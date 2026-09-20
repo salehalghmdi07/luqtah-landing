@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>لُقطة الأميرات | تطبيق الفخامة والأناقة لكِ ولأميرتك الصغيرة</title>
+<meta name="description" content="لُقطة الأميرات - وجهتكِ الفاخرة للفساتين والحقائب والإكسسوارات ومستلزمات الأميرات الصغيرات. حمّلي التطبيق الآن.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   0. RESET & TOKENS
+============================================================ */
+*, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+
+:root{
+  /* -- Palette: gold + orange + beige + white (Luxury Soft Minimal) -- */
+  --gold-deep:   #A6791F;
+  --gold:        #C9A24B;
+  --gold-light:  #EFD79E;
+  --orange:      #E17B3F;
+  --orange-soft: #F0A46B;
+  --beige:       #F7EEDF;
+  --cream:       #FEF5EE;
+  --white:       #FFFFFF;
+  --ink:         #3B2A18;
+  --ink-soft:    #7C6A52;
+  --line:        rgba(166,121,31,0.18);
+
+  --gradient-gold:   #FF7913;
+  --gradient-soft:   linear-gradient(160deg, var(--cream) 0%, var(--beige) 100%);
+  --shadow-soft:     0 20px 50px -20px rgba(166,121,31,0.35);
+  --shadow-card:     0 10px 30px -12px rgba(59,42,24,0.18);
+  --glass-bg:        rgba(255,255,255,0.55);
+  --glass-border:    rgba(255,255,255,0.6);
+
+  --font-display: 'Tajawal', sans-serif;
+  --font-body:    'Tajawal', sans-serif;
+}
+
+body{
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x:hidden;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+img, svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+
+.container{
+  width:100%;
+  max-width:1200px;
+  margin-inline:auto;
+  padding-inline:24px;
+}
+
+section{ position:relative; }
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  color:var(--gold-deep);
+  background: rgba(255,121,19,0.12);
+  border:1px solid var(--line);
+  padding:6px 18px;
+  border-radius:999px;
+  margin-bottom:18px;
+}
+
+.section-title{
+  font-family:var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight:900;
+  color:var(--ink);
+  margin-bottom:16px;
+  line-height:1.3;
+}
+
+.section-title span{
+  background: var(--gradient-gold);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.section-desc{
+  font-size:17px;
+  color:var(--ink-soft);
+  max-width:620px;
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:56px;
+}
+.section-head .section-desc{ margin-inline:auto; }
+
+/* reveal-on-scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition: opacity .8s cubic-bezier(.16,.8,.3,1), transform .8s cubic-bezier(.16,.8,.3,1);
+}
+.reveal.in-view{ opacity:1; transform:translateY(0); }
+.reveal-delay-1{ transition-delay:.08s; }
+.reveal-delay-2{ transition-delay:.16s; }
+.reveal-delay-3{ transition-delay:.24s; }
+.reveal-delay-4{ transition-delay:.32s; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+}
+
+/* ============================================================
+   1. TOP BAR
+============================================================ */
+.topbar{
+  position:fixed;
+  inset-inline:0;
+  top:0;
+  z-index:100;
+  padding:14px 0;
+  transition: background .4s ease, box-shadow .4s ease, padding .4s ease;
+}
+.topbar.scrolled{
+  background: rgba(252,248,240,0.75);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 4px 24px -8px rgba(59,42,24,0.12);
+  padding:10px 0;
+}
+.topbar .container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:900;
+  color:var(--ink);
+}
+.brand .crown-mark{ height:30px; width:auto; }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 26px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:15px;
+  transition: transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease, filter .35s ease;
+}
+.btn-primary{
+  background: var(--gradient-gold);
+  color: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+.btn-primary:hover{ transform:translateY(-3px); filter:brightness(1.06); box-shadow:0 26px 55px -18px rgba(166,121,31,0.5); }
+.btn-ghost{
+  background: var(--glass-bg);
+  border:1px solid var(--glass-border);
+  color:var(--ink);
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover{ transform:translateY(-3px); border-color:var(--gold); }
+.btn-small{ padding:9px 18px; font-size:13px; }
+
+/* ============================================================
+   2. HERO
+============================================================ */
+.hero{
+  padding: 150px 0 100px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(60% 55% at 85% 8%, rgba(225,123,63,0.16), transparent 60%),
+    radial-gradient(55% 50% at 8% 92%, rgba(201,162,75,0.18), transparent 60%),
+    var(--gradient-soft);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(201,162,75,0.35) 50%, transparent 51%),
+    radial-gradient(1px 1px at 75% 15%, rgba(225,123,63,0.35) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(201,162,75,0.3) 50%, transparent 51%),
+    radial-gradient(1px 1px at 90% 60%, rgba(225,123,63,0.3) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 60% 85%, rgba(201,162,75,0.3) 50%, transparent 51%);
+  pointer-events:none;
+  animation: twinkle 6s ease-in-out infinite;
+}
+@keyframes twinkle{ 0%,100%{opacity:.5;} 50%{opacity:1;} }
+
+.hero .container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  max-width:760px;
+}
+
+.hero-crown{
+  height:78px; width:auto;
+  margin-bottom:22px;
+  animation: float-crown 4.5s ease-in-out infinite;
+  filter: drop-shadow(0 12px 18px rgba(166,121,31,0.35));
+}
+@keyframes float-crown{ 0%,100%{ transform:translateY(0) rotate(-2deg); } 50%{ transform:translateY(-10px) rotate(2deg); } }
+
+.hero-title{
+  font-family:var(--font-display);
+  font-size: clamp(38px, 5.2vw, 64px);
+  font-weight:900;
+  line-height:1.2;
+  margin-bottom:22px;
+}
+.hero-title .gold-text{
+  background: var(--gradient-gold);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+.hero-desc{
+  font-size:18px;
+  color:var(--ink-soft);
+  max-width:520px;
+  margin-bottom:36px;
+}
+
+.store-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-bottom:42px;
+}
+.store-btn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 22px;
+  border-radius:16px;
+  background: var(--ink);
+  color:var(--white);
+  box-shadow: var(--shadow-card);
+  transition: transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease, background .35s ease;
+}
+.store-btn:hover{ transform:translateY(-4px); box-shadow:0 20px 40px -16px rgba(59,42,24,0.45); background:#2c1f11; }
+.store-btn svg{ width:26px; height:26px; flex-shrink:0; }
+.store-btn .store-text{ display:flex; align-items:center; line-height:1.25; }
+.store-btn .store-text strong{ font-size:16px; font-weight:700; font-family:var(--font-display); }
+
+.hero-trust{
+  display:flex;
+  gap:28px;
+  flex-wrap:wrap;
+}
+.hero-trust div{ text-align:center; }
+.hero-trust strong{
+  display:block;
+  font-family:var(--font-display);
+  font-size:24px;
+  color:var(--gold-deep);
+}
+.hero-trust span{ font-size:13px; color:var(--ink-soft); }
+
+/* ============================================================
+   3. WHY US — feature cards
+============================================================ */
+.why-us{ padding:110px 0; background:var(--white); }
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+.feature-card{
+  padding:34px 28px;
+  border-radius:26px;
+  background: var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-card);
+  transition: transform .45s cubic-bezier(.2,.8,.3,1), box-shadow .45s ease, border-color .45s ease;
+}
+.feature-card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 30px 55px -22px rgba(166,121,31,0.4);
+  border-color: var(--gold-light);
+}
+.feature-icon{
+  width:56px; height:56px;
+  border-radius:18px;
+  background: var(--gradient-gold);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:22px;
+  box-shadow: 0 12px 24px -10px rgba(225,123,63,0.55);
+}
+.feature-icon svg{ width:28px; height:28px; color:var(--white); }
+.feature-card h3{ font-family:var(--font-display); font-weight:900; font-size:20px; margin-bottom:10px; color:var(--ink); }
+.feature-card p{ font-size:15px; color:var(--ink-soft); }
+
+/* ============================================================
+   4. CATEGORIES — 3D tilt cards
+============================================================ */
+.categories{
+  padding:110px 0;
+  background: var(--gradient-soft);
+  position:relative;
+}
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+  perspective:1200px;
+}
+.cat-card{
+  position:relative;
+  padding:30px 18px;
+  text-align:center;
+  border-radius:24px;
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  border:1px solid var(--line);
+  transform-style:preserve-3d;
+  transition: transform .12s ease-out, box-shadow .35s ease;
+  will-change:transform;
+}
+.cat-card:hover{ box-shadow: 0 34px 60px -24px rgba(166,121,31,0.42); }
+.cat-icon-wrap{
+  width:74px; height:74px;
+  margin:0 auto 18px;
+  border-radius:22px;
+  background: #FF7913;
+  display:flex; align-items:center; justify-content:center;
+  transform: translateZ(30px);
+  transition: transform .4s cubic-bezier(.2,.8,.3,1);
+}
+.cat-card:hover .cat-icon-wrap{ transform: translateZ(50px) rotate(-6deg) scale(1.08); }
+.cat-icon-wrap svg{ width:38px; height:38px; }
+.cat-icon-wrap svg path,
+.cat-icon-wrap svg circle,
+.cat-icon-wrap svg rect{ fill:#FFFFFF !important; stroke:#FFFFFF !important; }
+.cat-card span{
+  display:block;
+  font-weight:700;
+  font-size:15px;
+  color:var(--ink);
+  transform: translateZ(20px);
+}
+
+/* ============================================================
+   5. FEATURE SECTIONS (inspiration / matching)
+============================================================ */
+.feature-section{ padding:100px 0; background:var(--white); }
+.feature-section.alt{ background: var(--gradient-soft); }
+.feature-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.feature-split.reverse .visual-col{ order:2; }
+.feature-split.reverse .text-col{ order:1; }
+
+.visual-card{
+  position:relative;
+  border-radius:32px;
+  padding:48px;
+  background: var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+  min-height:340px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.visual-card::before{
+  content:"";
+  position:absolute;
+  width:220px; height:220px;
+  background: var(--gradient-gold);
+  border-radius:50%;
+  filter:blur(60px);
+  opacity:.35;
+  top:-40px; right:-40px;
+}
+.visual-card svg{ width:100%; max-width:280px; position:relative; z-index:1; }
+
+.text-col .icon-badge{
+  width:60px; height:60px;
+  border-radius:18px;
+  background: var(--gradient-gold);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:24px;
+  box-shadow: 0 14px 26px -10px rgba(166,121,31,0.5);
+}
+.text-col .icon-badge svg{ width:30px; height:30px; color:var(--white); }
+.text-col h2{ font-family:var(--font-display); font-weight:900; font-size:clamp(26px,3.4vw,36px); margin-bottom:18px; color:var(--ink); }
+.text-col p{ font-size:16.5px; color:var(--ink-soft); margin-bottom:22px; max-width:480px; }
+.tick-list{ display:flex; flex-direction:column; gap:12px; }
+.tick-list li{ display:flex; align-items:center; gap:10px; font-size:15px; color:var(--ink); font-weight:500; }
+.tick-list svg{ width:20px; height:20px; color:var(--orange); flex-shrink:0; }
+
+/* ============================================================
+   6. PRICING — packages & plans (accordion)
+============================================================ */
+.pricing{ padding:110px 0; background:var(--white); }
+.accordion-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.accordion-item{
+  position:relative;
+  border-radius:24px;
+  background: var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-card);
+  overflow:hidden;
+  transition: box-shadow .4s ease, border-color .4s ease;
+}
+.accordion-item.featured{
+  background: linear-gradient(165deg, var(--cream), var(--beige));
+  border:1px solid var(--gold-light);
+}
+.accordion-item.open{ box-shadow: 0 26px 50px -22px rgba(166,121,31,0.35); }
+
+.accordion-header{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:26px 30px;
+  text-align:right;
+  background:none;
+}
+.accordion-header .dot{ width:8px; height:8px; border-radius:50%; background:var(--orange); flex-shrink:0; }
+.accordion-header .head-text{ flex:1; min-width:0; }
+.accordion-header .price-title{ font-family:var(--font-display); font-weight:900; font-size:19px; color:var(--ink); display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.accordion-header .price-sub{ font-size:13.5px; color:var(--ink-soft); margin-top:4px; }
+
+.badge-pill{
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 12px;
+  border-radius:999px;
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--white);
+  background: var(--gradient-gold);
+}
+.badge-pill svg{ width:12px; height:12px; }
+
+.accordion-header .price-summary{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:20px;
+  color:var(--gold-deep);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.accordion-header .price-summary small{ font-family:var(--font-body); font-weight:500; font-size:12.5px; color:var(--ink-soft); }
+
+.accordion-chevron{
+  width:34px; height:34px;
+  border-radius:50%;
+  background: var(--beige);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  transition: transform .4s cubic-bezier(.2,.8,.3,1), background .3s ease;
+}
+.accordion-chevron svg{ width:16px; height:16px; color:var(--gold-deep); }
+.accordion-item.open .accordion-chevron{ transform: rotate(180deg); background:var(--gold-light); }
+
+.accordion-panel{
+  display:grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .5s cubic-bezier(.2,.8,.3,1);
+}
+.accordion-item.open .accordion-panel{ grid-template-rows: 1fr; }
+.accordion-panel-inner{ overflow:hidden; }
+.accordion-panel-content{ padding:0 30px 30px; }
+
+.price-toggle{ display:flex; gap:10px; margin-bottom:20px; }
+.price-toggle .toggle-box{
+  flex:1;
+  padding:12px 14px;
+  border-radius:16px;
+  background: var(--white);
+  border:1px solid var(--line);
+  text-align:center;
+}
+.price-toggle .toggle-box.active{ border-color:var(--gold); box-shadow:0 10px 20px -10px rgba(166,121,31,0.35); }
+.price-toggle .toggle-box small{ display:block; font-size:12px; color:var(--ink-soft); margin-bottom:4px; }
+.price-toggle .toggle-box strong{ font-family:var(--font-display); font-size:16px; color:var(--ink); }
+
+.price-features{ display:flex; flex-direction:column; gap:12px; }
+.price-features li{ display:flex; align-items:flex-start; gap:10px; font-size:14.5px; color:var(--ink); }
+.price-features svg{ width:18px; height:18px; color:var(--orange); flex-shrink:0; margin-top:2px; }
+
+@media (max-width:640px){
+  .accordion-header{ padding:20px 20px; gap:12px; }
+  .accordion-header .price-title{ font-size:16.5px; }
+  .accordion-panel-content{ padding:0 20px 24px; }
+}
+
+/* ============================================================
+   7. REWARDS & REFERRAL
+============================================================ */
+.rewards{ padding:110px 0; background: var(--gradient-soft); }
+.rewards-card{
+  border-radius:32px;
+  padding:48px;
+  background: var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+.rewards-top{
+  display:flex;
+  flex-wrap:wrap;
+  gap:32px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:30px;
+}
+.rewards-stat{ text-align:center; }
+.rewards-stat strong{ display:block; font-family:var(--font-display); font-weight:900; font-size:32px; color:var(--gold-deep); }
+.rewards-stat span{ font-size:13.5px; color:var(--ink-soft); }
+
+.rewards-invite{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 22px;
+  border-radius:18px;
+  background: rgba(255,121,19,0.12);
+  border:1px solid var(--line);
+  font-size:15px;
+  font-weight:700;
+  color:var(--gold-deep);
+  margin-bottom:26px;
+}
+.rewards-invite svg{ width:22px; height:22px; flex-shrink:0; }
+
+.rewards-progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin-bottom:10px;
+}
+.progress-track{
+  width:100%;
+  height:10px;
+  border-radius:999px;
+  background: var(--beige);
+  overflow:hidden;
+  margin-bottom:34px;
+}
+.progress-fill{
+  height:100%;
+  border-radius:999px;
+  background: var(--gradient-gold);
+  width:0%;
+  transition: width 1.4s cubic-bezier(.2,.8,.3,1);
+}
+
+.referral-example{
+  position:relative;
+  pointer-events:none;
+  user-select:none;
+}
+.example-badge{
+  position:absolute;
+  top:-14px;
+  left:24px;
+  padding:5px 14px;
+  border-radius:999px;
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--ink-soft);
+  background: var(--white);
+  border:1px solid var(--line);
+  box-shadow: var(--shadow-card);
+  z-index:1;
+}
+
+.referral-box{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:8px 8px 8px 22px;
+  border-radius:18px;
+  background: var(--white);
+  border:1px solid var(--line);
+  margin-bottom:22px;
+  opacity:0.9;
+}
+.referral-box .referral-label{ font-size:12.5px; color:var(--ink-soft); }
+.referral-box .referral-code{ font-family:var(--font-display); font-weight:900; font-size:20px; color:var(--gold-deep); letter-spacing:1px; flex:1; }
+.referral-copy{
+  width:44px; height:44px;
+  border-radius:14px;
+  background: var(--beige);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.referral-copy svg{ width:20px; height:20px; color:var(--gold-deep); }
+
+.rewards-actions{ display:flex; gap:16px; flex-wrap:wrap; opacity:0.9; }
+.rewards-actions .btn{ flex:1; min-width:200px; text-align:center; cursor:default; }
+.rewards-note{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:24px;
+  padding:16px 20px;
+  border-radius:16px;
+  background: rgba(225,123,63,0.08);
+  border:1px solid rgba(225,123,63,0.2);
+  font-size:13px;
+  color:var(--ink-soft);
+}
+.rewards-note svg{ width:18px; height:18px; color:var(--orange); flex-shrink:0; margin-top:1px; }
+
+@media (max-width:980px){
+  .rewards-card{ padding:32px 22px; }
+  .rewards-top{ justify-content:center; text-align:center; }
+}
+@media (max-width:640px){
+  .referral-box{ flex-wrap:wrap; padding:16px; }
+  .referral-box .referral-code{ width:100%; }
+}
+
+/* ============================================================
+/* ============================================================
+   8. SHOWCASE — dark tabbed app tour (reference-matched)
+============================================================ */
+.showcase{
+  padding:110px 0;
+  background: var(--ink);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.showcase::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(45% 55% at 15% 15%, rgba(201,162,75,0.16), transparent 60%),
+    radial-gradient(45% 55% at 85% 85%, rgba(255,121,19,0.14), transparent 60%);
+}
+.showcase .container{ position:relative; z-index:1; }
+
+.eyebrow-light{
+  color: var(--gold-light);
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(239,215,158,0.3);
+}
+.showcase .section-title{ color:var(--white); }
+.showcase .section-title .title-icon{
+  display:inline-block;
+  width:26px; height:26px;
+  border-radius:8px;
+  background: var(--gradient-gold);
+  margin-inline-end:10px;
+  vertical-align:-4px;
+}
+.showcase .section-desc{ color:rgba(255,255,255,0.62); margin-inline:auto; }
+
+.showcase-tabs{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:44px 0 54px;
+}
+.tab-pill{
+  padding:12px 26px;
+  border-radius:999px;
+  font-size:14.5px;
+  font-weight:700;
+  color:rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.14);
+  transition: background .35s ease, color .35s ease, border-color .35s ease, transform .35s ease;
+}
+.tab-pill:hover{ border-color: rgba(239,215,158,0.4); color:var(--white); }
+.tab-pill.active{
+  background: var(--gradient-gold);
+  border-color: transparent;
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -12px rgba(255,121,19,0.45);
+}
+
+.showcase-stage{
+  display:flex;
+  direction: ltr;
+  align-items:center;
+  justify-content:center;
+  gap:34px;
+  flex-wrap:wrap;
+}
+.stage-arrow{
+  width:52px; height:52px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.04);
+  color:var(--gold-light);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  transition: background .3s ease, border-color .3s ease, transform .3s ease;
+}
+.stage-arrow:hover{ background: rgba(255,255,255,0.1); border-color:var(--gold-light); transform:translateY(-2px); }
+.stage-arrow svg{ width:20px; height:20px; }
+
+.stage-info{
+  direction: rtl;
+  text-align:right;
+  max-width:280px;
+}
+.slide-counter{
+  display:inline-flex;
+  padding:6px 16px;
+  border-radius:999px;
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--gold-light);
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(239,215,158,0.25);
+  margin-bottom:16px;
+}
+.slide-title{ font-family:var(--font-display); font-weight:900; font-size:22px; color:var(--white); margin-bottom:10px; }
+.slide-desc{ font-size:14.5px; color:rgba(255,255,255,0.6); line-height:1.8; }
+
+.showcase-phone{
+  position:relative;
+  width:280px; height:576px;
+  border-radius:44px;
+  background: linear-gradient(155deg,#2c2013,#1c140b);
+  padding:12px;
+  box-shadow: var(--shadow-soft), 0 0 0 2px rgba(239,215,158,0.35);
+  flex-shrink:0;
+}
+.showcase-phone::after{
+  content:"";
+  position:absolute; top:22px; left:50%; transform:translateX(-50%);
+  width:70px; height:18px; background:#1c140b; border-radius:20px;
+}
+.showcase-screen{
+  direction: rtl;
+  width:100%; height:100%;
+  border-radius:32px;
+  overflow:hidden;
+  position:relative;
+  background: var(--cream);
+}
+.showcase-panel{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  opacity:0;
+  transform: translateY(14px) scale(0.98);
+  transition: opacity .6s cubic-bezier(.2,.8,.3,1), transform .6s cubic-bezier(.2,.8,.3,1);
+  pointer-events:none;
+}
+.showcase-panel.active{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+
+.showcase-topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:34px 16px 12px;
+}
+.showcase-topbar .app-logo-mini{ display:flex; align-items:center; gap:6px; font-family:var(--font-display); font-weight:900; font-size:13px; color:var(--ink); }
+.showcase-topbar .app-logo-mini img{ height:15px; width:auto; }
+.showcase-topbar .tab-chip{
+  font-size:10.5px; font-weight:700; color:var(--white);
+  background: var(--ink); padding:4px 12px; border-radius:999px;
+}
+
+.showcase-banner{
+  margin:6px 14px 12px;
+  padding:14px 16px;
+  border-radius:16px;
+  background: linear-gradient(120deg, #FF7913, var(--gold-deep));
+  position:relative;
+}
+.showcase-banner .banner-tag{
+  position:absolute; top:-9px; left:12px;
+  font-size:9.5px; font-weight:700;
+  background: var(--white); color:var(--ink);
+  padding:3px 10px; border-radius:999px;
+}
+.showcase-banner p{ color:var(--white); font-size:12.5px; font-weight:700; line-height:1.6; }
+
+.showcase-list{ flex:1; margin:4px 14px 14px; display:flex; flex-direction:column; gap:8px; overflow:hidden; }
+.showcase-row{
+  display:flex; align-items:center; justify-content:space-between;
+  background: var(--white);
+  border-radius:14px;
+  padding:10px 12px;
+  box-shadow: 0 6px 14px -10px rgba(59,42,24,0.25);
+}
+.showcase-row .row-price{ font-family:var(--font-display); font-weight:900; font-size:13px; color:var(--gold-deep); }
+.showcase-row .row-right{ text-align:left; }
+.showcase-row .row-name{ font-size:11.5px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.showcase-row .row-meta{ display:flex; align-items:center; gap:6px; font-size:9.5px; }
+.showcase-row .row-verified{ display:flex; align-items:center; gap:3px; color:#3E8E5A; font-weight:700; }
+.showcase-row .row-verified svg{ width:11px; height:11px; }
+.showcase-row .row-tag{ color:#FF7913; font-weight:700; }
+
+@media (max-width:980px){
+  .showcase-stage{ direction: rtl; }
+  .stage-info{ text-align:center; max-width:340px; }
+}
+@media (max-width:640px){
+  .showcase-phone{ width:230px; height:474px; }
+  .stage-arrow{ width:42px; height:42px; }
+}
+
+/* ============================================================
+   9. FINAL DOWNLOAD CTA
+============================================================ */
+.final-cta{
+  padding:120px 0;
+  background: var(--ink);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.final-cta::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(50% 60% at 20% 20%, rgba(201,162,75,0.25), transparent 60%),
+    radial-gradient(50% 60% at 80% 80%, rgba(225,123,63,0.25), transparent 60%);
+}
+.final-cta .container{ position:relative; z-index:1; }
+.final-cta .hero-crown{ margin-inline:auto; }
+.final-cta .section-title{ color:var(--white); }
+.final-cta .section-title span{ -webkit-text-fill-color:unset; background:var(--gradient-gold); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.final-cta .section-desc{ color:rgba(255,255,255,0.7); margin-inline:auto; }
+.final-cta .store-buttons{ justify-content:center; margin-top:40px; }
+.final-cta .store-btn{ background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); backdrop-filter:blur(10px); }
+.final-cta .store-btn:hover{ background: rgba(255,255,255,0.15); }
+
+/* ============================================================
+   10. FOOTER
+============================================================ */
+footer{ padding:36px 0; background:var(--ink); border-top:1px solid rgba(255,255,255,0.08); }
+footer .container{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; }
+footer p{ font-size:13px; color:rgba(255,255,255,0.55); }
+footer .footer-link{ font-size:14px; font-weight:700; color:var(--gold-light); transition:color .3s ease; }
+footer .footer-link:hover{ color:#FF7913; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 980px){
+  .hero-desc{ margin-inline:auto; }
+  .store-buttons{ justify-content:center; }
+  .hero-trust{ justify-content:center; }
+  .feature-grid{ grid-template-columns:repeat(2,1fr); }
+  .cat-grid{ grid-template-columns:repeat(3,1fr); }
+  .feature-split{ grid-template-columns:1fr; text-align:center; }
+  .feature-split .text-col p{ margin-inline:auto; }
+  .feature-split .icon-badge{ margin-inline:auto; }
+  .tick-list{ align-items:center; }
+  .feature-split.reverse .visual-col,
+  .feature-split.reverse .text-col{ order:unset; }
+}
+
+@media (max-width:640px){
+  .container{ padding-inline:18px; }
+  .hero{ padding:120px 0 70px; }
+  .feature-grid{ grid-template-columns:1fr; }
+  .cat-grid{ grid-template-columns:repeat(2,1fr); }
+  .showcase-phone{ width:230px; height:474px; }
+  .store-btn{ padding:10px 16px; }
+  .why-us, .categories, .feature-section, .showcase, .final-cta{ padding:70px 0; }
+  .section-head{ margin-bottom:38px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOP BAR
+============================================================ -->
+<header class="topbar" id="topbar">
+  <div class="container">
+    <div class="brand">
+      <img class="crown-mark" src="images/logo-icon.png" alt="شعار لُقطة الأميرات">
+      لُقطة الأميرات
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     1. HERO
+============================================================ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-text">
+      <img class="hero-crown" src="images/logo-icon.png" alt="شعار لُقطة الأميرات">
+      <div class="eyebrow">تطبيق الأناقة النسائية والعائلية</div>
+      <h1 class="hero-title">لُقطة <span class="gold-text">الأميرات</span></h1>
+      <p class="hero-desc" id="cmsHeroText">
+        وجهتكِ الفاخرة لكل ما تحتاجينه: فساتين وعبايات، حقائب وإكسسوارات، وحتى مستلزمات أميرتكِ الصغيرة —
+        في تجربة تسوّق أنيقة، مريحة، وموثوقة من أول لُقطة.
+      </p>
+      <div class="store-buttons">
+        <a href="#" class="store-btn cms-gplay-link" aria-label="حمّلي التطبيق من جوجل بلاي">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3.6 2.3 13.8 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1Z" fill="#F0A46B"/><path d="M13.8 12 3.6 2.3c.2-.1.5-.1.8 0l11 6.3-1.6 3.4Z" fill="#EFD79E"/><path d="M13.8 12 16 15.4l-11 6.3c-.3.1-.6.1-.8 0l9.8-9.7Z" fill="#C9A24B"/><path d="M16 15.4 13.8 12l2.2-3.4 3.9 2.2c.9.5.9 1.9 0 2.4L16 15.4Z" fill="#A6791F"/></svg>
+          <span class="store-text"><strong>Google Play</strong></span>
+        </a>
+        <a href="#" class="store-btn cms-appstore-link" aria-label="حمّلي التطبيق من آب ستور">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.6-2.8-1.9-3.4-1.9-1.5-.1-2.9.9-3.6.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.2 0 2-1.1 2.8-2.2.7-1 1.4-2.5 1.6-3.6a4.7 4.7 0 0 1-2.7-4Z" fill="#F0A46B"/><path d="M14.9 5.6c.6-.8 1-1.9.9-3-.9.1-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2.1-.5 2.7-1.3Z" fill="#EFD79E"/></svg>
+          <span class="store-text"><strong>App Store</strong></span>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div><strong>+50K</strong><span>مستخدمة راضية</span></div>
+        <div><strong>4.9★</strong><span>تقييم المستخدمات</span></div>
+        <div><strong>8</strong><span>تصنيفات فاخرة</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. WHY US
+============================================================ -->
+<section class="why-us" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">لماذا نحن</div>
+      <h2 class="section-title">لماذا <span>لُقطة الأميرات</span>؟</h2>
+      <p class="section-desc" id="cmsWhyUsText">تجربة تسوّق مصمّمة لتليق بذوقكِ الرفيع، وبكل تفاصيل عالمكِ وعالم أميرتكِ الصغيرة.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.6 5.4 5.9.9-4.3 4.2 1 5.9L12 16.5l-5.2 2.9 1-5.9L3.5 9.3l5.9-.9L12 3z" stroke-linejoin="round"/></svg></div>
+        <h3>تشكيلة منتقاة بعناية</h3>
+        <p>قطع فاخرة ومنتقاة تناسب ذوقكِ، من أرقى الماركات والمصممات المحليات والعالميات.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>ثقة وخصوصية تامة</h3>
+        <p>معاملات آمنة وبيانات محمية بالكامل، لتستمتعي بتجربة تسوّق مطمئنة من البداية للنهاية.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2" stroke-linecap="round"/></svg></div>
+        <h3>توصيل سريع وموثوق</h3>
+        <p>اطلبي قطعتكِ المفضلة وتابعي وصولها لحظة بلحظة، بخدمة توصيل سريعة تصل إلى بابكِ.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.6-9.5-9C.6 8.6 2.5 5 6 5c2 0 3.4 1.1 4 2 .6-.9 2-2 4-2 3.5 0 5.4 3.6 3.5 7-2.5 4.4-9.5 9-9.5 9z"/></svg></div>
+        <h3>مجتمع نسائي راقٍ</h3>
+        <p>انضمي إلى مجتمع من السيدات صاحبات الذوق الرفيع، وشاركي إطلالاتكِ وإلهامكِ اليومي.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/></svg></div>
+        <h3>تصنيفات شاملة</h3>
+        <p>من فساتينكِ إلى مستلزمات طفلتكِ، كل ما تحتاجينه في مكان واحد أنيق ومنظم.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 3l1.3 3.7L22 8l-3.7 1.3L17 13l-1.3-3.7L12 8l3.7-1.3L17 3z"/><path d="M6 13l.9 2.6L9.5 16.5l-2.6.9L6 20l-.9-2.6L2.5 16.5l2.6-.9L6 13z"/></svg></div>
+        <h3>إلهام يومي</h3>
+        <p>إطلالات وأفكار تنسيق جديدة كل يوم لتكوني الأميرة الأكثر أناقة في كل مناسبة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. CATEGORIES — 3D tilt cards
+============================================================ -->
+<section class="categories" id="categories">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">عالم متكامل</div>
+      <h2 class="section-title">التصنيفات <span>الرئيسية</span></h2>
+      <p class="section-desc" id="cmsCategoriesText">كل ما تحتاجينه لكِ ولأميرتكِ الصغيرة، مرتب في تصنيفات فاخرة وسهلة التصفح.</p>
+    </div>
+
+    <div class="cat-grid" id="catGrid">
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M20 6h8l3 6-3 3v25a4 4 0 0 1-4 4h0a4 4 0 0 1-4-4V15l-3-3 3-6z" fill="url(#gDress)"/><defs><linearGradient id="gDress" x1="17" y1="6" x2="31" y2="44"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>الفساتين</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M14 20a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v2h2a2 2 0 0 1 2 2l1.6 16a3 3 0 0 1-3 3.3H11.4a3 3 0 0 1-3-3.3L10 24a2 2 0 0 1 2-2h2v-2z" fill="url(#gBag)"/><path d="M18 20v-2a6 6 0 1 1 12 0v2" stroke="url(#gBag)" stroke-width="2.4" fill="none"/><defs><linearGradient id="gBag" x1="10" y1="12" x2="38" y2="43"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>الحقائب النسائية</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M10 30c0-6 4-13 9-15l3 5 12-3c4-1 8 2 8 6 0 3-2 5-5 6l-15 5c-6 2-12-1-12-4z" fill="url(#gShoe)"/><defs><linearGradient id="gShoe" x1="10" y1="15" x2="42" y2="34"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>الأحذية النسائية</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-4">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6c-3 3-4 5-4 8s2 4 2 4-8 3-10 12c-1 5 2 8 6 8h12c4 0 7-3 6-8-2-9-10-12-10-12s2-1 2-4-1-5-4-8z" fill="url(#gAbaya)"/><defs><linearGradient id="gAbaya" x1="10" y1="6" x2="38" y2="38"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>العبايات</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="6" fill="url(#gJew)"/><path d="M24 20v18M17 30h14" stroke="url(#gJew)" stroke-width="3" stroke-linecap="round"/><defs><linearGradient id="gJew" x1="18" y1="8" x2="30" y2="38"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>الإكسسوارات والمجوهرات</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="11" fill="none" stroke="url(#gWatch)" stroke-width="3"/><path d="M24 17v7l5 3" stroke="url(#gWatch)" stroke-width="2.6" stroke-linecap="round"/><path d="M20 6h8v6h-8zM20 36h8v6h-8z" fill="url(#gWatch)"/><defs><linearGradient id="gWatch" x1="13" y1="6" x2="35" y2="42"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>الساعات النسائية</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M10 16c6-4 22-4 26 2l3 10H12l-2-12z" fill="url(#gStroller)"/><circle cx="16" cy="38" r="4" fill="url(#gStroller)"/><circle cx="34" cy="38" r="4" fill="url(#gStroller)"/><path d="M8 16l-3-1" stroke="url(#gStroller)" stroke-width="2.4" stroke-linecap="round"/><defs><linearGradient id="gStroller" x1="5" y1="15" x2="39" y2="42"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>عربات الأطفال</span>
+      </div>
+      <div class="cat-card reveal reveal-delay-4">
+        <div class="cat-icon-wrap"><svg viewBox="0 0 48 48" fill="none"><path d="M8 20c6-6 26-6 32 0" stroke="url(#gCrib)" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="8" y="20" width="32" height="12" rx="3" fill="url(#gCrib)"/><path d="M12 32v6M36 32v6" stroke="url(#gCrib)" stroke-width="3" stroke-linecap="round"/><defs><linearGradient id="gCrib" x1="8" y1="14" x2="40" y2="38"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs></svg></div>
+        <span>أسرّة الأطفال</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. PRINCESS INSPIRATION
+============================================================ -->
+<section class="feature-section" id="inspiration">
+  <div class="container feature-split">
+    <div class="text-col reveal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 3l1.3 3.7L22 8l-3.7 1.3L17 13l-1.3-3.7L12 8l3.7-1.3L17 3z"/><path d="M6 13l.9 2.6L9.5 16.5l-2.6.9L6 20l-.9-2.6L2.5 16.5l2.6-.9L6 13z"/></svg></div>
+      <h2>إلهام <span class="gold-text" style="background:var(--gradient-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">الأميرات</span></h2>
+      <p>موجز إطلالات يومي مستوحى من أرقى الأناقات، يساعدكِ على اكتشاف تنسيقات جديدة تناسب مناسباتكِ ولحظاتكِ الخاصة — كل صباح إلهام جديد بلمسة فاخرة.</p>
+      <ul class="tick-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>إطلالات مختارة يوميًا حسب ذوقكِ</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>أفكار تنسيق للمناسبات الخاصة</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>حفظ ومشاركة الإطلالات المفضلة</li>
+      </ul>
+    </div>
+    <div class="visual-col reveal reveal-delay-2">
+      <div class="visual-card">
+        <!-- 🖼️ REPLACE HERE — الصورة الكبيرة لقسم "إلهام الأميرات". يمكن استبدال محتوى .visual-card بالكامل بـ <img src="images/inspiration.png" style="width:100%;max-width:280px;border-radius:20px;"> -->
+        <svg viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="86" fill="url(#gInsp)" opacity="0.12"/>
+          <path d="M100 30c-14 14-18 24-18 36s10 18 10 18-38 14-46 54c-4 22 10 36 28 36h52c18 0 32-14 28-36-8-40-46-54-46-54s10-6 10-18-4-22-18-36z" fill="url(#gInsp)"/>
+          <circle cx="100" cy="30" r="8" fill="url(#gInsp)"/>
+          <defs><linearGradient id="gInsp" x1="46" y1="20" x2="154" y2="174"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. MATCH & EXCHANGE
+============================================================ -->
+<section class="feature-section alt" id="match">
+  <div class="container feature-split reverse">
+    <div class="visual-col reveal reveal-delay-2">
+      <div class="visual-card">
+        <!-- 🖼️ REPLACE HERE — الصورة الكبيرة أعلى قسم "التطابق والاستبدال". يمكن استبدال محتوى .visual-card بالكامل بـ <img src="images/match-exchange.png" style="width:100%;max-width:280px;border-radius:20px;"> -->
+        <svg viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="86" fill="url(#gMatch)" opacity="0.12"/>
+          <rect x="30" y="60" width="60" height="80" rx="14" fill="url(#gMatch)"/>
+          <rect x="110" y="60" width="60" height="80" rx="14" fill="url(#gMatch)" opacity="0.55"/>
+          <path d="M92 100l16-10v20z" fill="#fff"/>
+          <path d="M108 100l-16-10v20z" fill="#fff" opacity="0.85"/>
+          <defs><linearGradient id="gMatch" x1="30" y1="60" x2="170" y2="140"><stop stop-color="#E17B3F"/><stop offset="1" stop-color="#A6791F"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+    <div class="text-col reveal">
+      <div class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 3l4 4-4 4M21 7H9a4 4 0 0 0-4 4v1M7 21l-4-4 4-4M3 17h12a4 4 0 0 0 4-4v-1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>التطابق <span style="background:var(--gradient-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">والاستبدال</span></h2>
+      <p>لا مزيد من القطع التي لا تناسبكِ. تقترح لكِ لُقطة الأميرات أقرب تطابق لمقاسكِ وذوقكِ، مع إمكانية استبدال القطع بسهولة وسلاسة تامة.</p>
+      <ul class="tick-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>اقتراحات ذكية حسب المقاس والذوق</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>استبدال سريع وبدون تعقيد</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l6 6L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>ضمان الرضا التام عن كل قطعة</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. PRICING — packages & plans
+============================================================ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">الباقات والأسعار</div>
+      <h2 class="section-title">اختاري الباقة <span>المناسبة لكِ</span></h2>
+      <p class="section-desc" id="cmsPricingText">لإدارة إعلاناتكِ وزيادة فرص البيع داخل المنصة، اختاري الباقة التي تناسب احتياجكِ.</p>
+    </div>
+
+    <div class="accordion-list" id="pricingAccordion">
+      <!-- Starter -->
+      <div class="accordion-item reveal reveal-delay-1">
+        <button class="accordion-header" aria-expanded="false">
+          <span class="dot"></span>
+          <span class="head-text">
+            <span class="price-title">باقة البدء</span>
+            <span class="price-sub">مناسبة للبائعات الجدد لبدء عرض منتجاتهن</span>
+          </span>
+          <span class="price-summary">مجانًا</span>
+          <span class="accordion-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-content">
+              <ul class="price-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>إعلان واحد كل 5 أيام</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>تحديث الإعلان كل 72 ساعة</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>بيانات الإعلان مخفية عن المشترين</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>بيانات البائعة مخفية حتى يتم فتح الإعلان</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Golden — featured -->
+      <div class="accordion-item featured reveal reveal-delay-2">
+        <button class="accordion-header" aria-expanded="false">
+          <span class="dot"></span>
+          <span class="head-text">
+            <span class="price-title">باقة الإعلانات الذهبية <span class="badge-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 18l1-9 5 4 4-8 4 8 5-4 1 9H4z"/></svg>الأكثر طلبًا</span></span>
+            <span class="price-sub">لزيادة فرص البيع والوصول إلى المشترين بسرعة</span>
+          </span>
+          <span class="price-summary">30 ر.س<br><small>شهريًا</small></span>
+          <span class="accordion-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-content">
+              <div class="price-toggle">
+                <div class="toggle-box active"><small>شهريًا</small><strong>30 ر.س</strong></div>
+                <div class="toggle-box"><small>سنويًا</small><strong>180 ر.س</strong></div>
+              </div>
+              <ul class="price-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>إعلان واحد كل 24 ساعة</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>تحديث الإعلان كل 6 ساعات</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>جميع بيانات الإعلان مرئية</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>بيانات البائعة مرئية للمشترين</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>ظهور الإعلان كإعلان ذهبي مميز</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="accordion-item reveal reveal-delay-3">
+        <button class="accordion-header" aria-expanded="false">
+          <span class="dot"></span>
+          <span class="head-text">
+            <span class="price-title">باقة تسويق الإشعارات</span>
+            <span class="price-sub">لزيادة فرص البيع السريع من خلال الحملات التسويقية</span>
+          </span>
+          <span class="price-summary">50 ر.س<br><small>مرة واحدة</small></span>
+          <span class="accordion-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <div class="accordion-panel-content">
+              <ul class="price-features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>استهداف الجمهور من خلال منطقة الإلهام</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>إرسال رسائل تسويقية عبر الإشعارات</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>إرسال رسائل تسويقية عبر واتساب</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. REWARDS & REFERRAL
+============================================================ -->
+<section class="rewards" id="rewards">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">نقاط ومكافآت</div>
+      <h2 class="section-title">كود الإحالة <span>ونقاط المكافآت</span></h2>
+      <p class="section-desc" id="cmsRewardsText">ادعي صديقاتكِ للانضمام إلى لُقطة الأميرات، واجمعي نقاطًا تقربكِ من لقب "أميرة ذهبية".</p>
+    </div>
+
+    <div class="rewards-card reveal reveal-delay-2">
+      <div class="rewards-top">
+        <div class="rewards-stat">
+          <strong>150</strong>
+          <span>مجموع نقاطكِ الحالية</span>
+        </div>
+        <div class="rewards-stat">
+          <strong>3</strong>
+          <span>إحالات ناجحة</span>
+        </div>
+        <div class="rewards-stat">
+          <strong>+100</strong>
+          <span>نقطة لكل إحالتين</span>
+        </div>
+      </div>
+
+      <div class="rewards-invite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 3l1.3 3.7L22 8l-3.7 1.3L17 13l-1.3-3.7L12 8l3.7-1.3L17 3z"/><path d="M6 13l.9 2.6L9.5 16.5l-2.6.9L6 20l-.9-2.6L2.5 16.5l2.6-.9L6 13z"/></svg>
+        ادعي صديقتين واحصلي على 100 نقطة إضافية
+      </div>
+
+      <div class="rewards-progress-label">
+        <span>الهدف التالي: لقب "أميرة ذهبية"</span>
+        <span>متبقي 150 نقطة</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" data-progress="50"></div>
+      </div>
+
+      <div class="referral-example">
+        <span class="example-badge">مثال توضيحي فقط</span>
+        <div class="referral-box">
+          <span class="referral-label">كود الإحالة الخاص بكِ</span>
+          <span class="referral-code">PRINCE500</span>
+          <span class="referral-copy" aria-disabled="true" tabindex="-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          </span>
+        </div>
+
+        <div class="rewards-actions">
+          <span class="btn btn-primary" aria-disabled="true" tabindex="-1">مشاركة الدعوة</span>
+          <span class="btn btn-ghost" aria-disabled="true" tabindex="-1">نسخ الكود</span>
+        </div>
+      </div>
+
+      <div class="rewards-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        لا يتم احتساب النقاط والإحالات والمكافآت إلا بعد اكتمال تسجيل وتوثيق حسابات صديقاتكِ وانتظام الحساب وتوثيقه بالكامل.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. GALLERY
+============================================================ -->
+<section class="showcase" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow eyebrow-light"><svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;"><path d="M4 18l1-9 5 4 4-8 4 8 5-4 1 9H4z"/></svg> جولة في واجهات التطبيق</div>
+      <h2 class="section-title"><span class="title-icon"></span>معرض واجهات "لُقطة الأميرات"</h2>
+      <p class="section-desc">تصميم واجهات أنيق وسلس يضمن لكِ أقصى درجات السهولة والسرعة والخصوصية في الاستخدام.</p>
+    </div>
+
+    <div class="showcase-tabs reveal reveal-delay-1" id="showcaseTabs">
+      <button class="tab-pill active" data-index="0">الرئيسية</button>
+      <button class="tab-pill" data-index="1">الاستبدال الذكي</button>
+      <button class="tab-pill" data-index="2">إلهام الأميرات</button>
+      <button class="tab-pill" data-index="3">التوثيق الشامل</button>
+    </div>
+
+    <div class="showcase-stage reveal reveal-delay-2">
+      <button class="stage-arrow" id="stagePrev" aria-label="السابق">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="stage-info">
+        <span class="slide-counter">واجهة <span id="slideCurrent">1</span> من 4</span>
+        <h3 class="slide-title" id="slideTitle">الرئيسية الذهبية</h3>
+        <p class="slide-desc" id="slideDesc">تصفحي أحدث القطع اليومية المُوثقة مع تصنيف ذكي للغاية.</p>
+      </div>
+
+      <div class="showcase-phone">
+        <div class="showcase-screen" id="showcaseScreen">
+
+          <!-- Panel 1 — الرئيسية -->
+          <div class="showcase-panel active">
+            <div class="showcase-topbar">
+              <span class="tab-chip">الرئيسية</span>
+              <div class="app-logo-mini"><img src="images/logo-icon.png" alt="">لُقطة الأميرات</div>
+            </div>
+            <div class="showcase-banner">
+              <span class="banner-tag">معاينة مباشرة</span>
+              <p>خصم خاص 20% على أول استبدال لقطعة فاخرة!</p>
+            </div>
+            <div class="showcase-list">
+              <div class="showcase-row">
+                <span class="row-price">9,500 ر.س</span>
+                <div class="row-right"><div class="row-name">حقيبة شانيل ميني</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">لُقطة اليوم</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">2,200 ر.س</span>
+                <div class="row-right"><div class="row-name">فستان سهرة دانتيل</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">خصم 60%</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">1,800 ر.س</span>
+                <div class="row-right"><div class="row-name">عربة أطفال Bugaboo</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">جديدة</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2 — الاستبدال الذكي -->
+          <div class="showcase-panel">
+            <div class="showcase-topbar">
+              <span class="tab-chip">الاستبدال الذكي</span>
+              <div class="app-logo-mini"><img src="images/logo-icon.png" alt="">لُقطة الأميرات</div>
+            </div>
+            <div class="showcase-banner">
+              <span class="banner-tag">اقتراح ذكي</span>
+              <p>قطعتكِ تُطابق 3 عروض استبدال متاحة الآن!</p>
+            </div>
+            <div class="showcase-list">
+              <div class="showcase-row">
+                <span class="row-price">تبديل مباشر</span>
+                <div class="row-right"><div class="row-name">حقيبة Dior ↔ فستان سهرة</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">تطابق 96%</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">تبديل مباشر</span>
+                <div class="row-right"><div class="row-name">حذاء مقاس 38 ↔ حقيبة جلد</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">تطابق 91%</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">تبديل مباشر</span>
+                <div class="row-right"><div class="row-name">ساعة نسائية ↔ إكسسوار ذهبي</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">تطابق 88%</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3 — إلهام الأميرات -->
+          <div class="showcase-panel">
+            <div class="showcase-topbar">
+              <span class="tab-chip">إلهام الأميرات</span>
+              <div class="app-logo-mini"><img src="images/logo-icon.png" alt="">لُقطة الأميرات</div>
+            </div>
+            <div class="showcase-banner">
+              <span class="banner-tag">إطلالة اليوم</span>
+              <p>أناقة الخريف الذهبية ✨ إلهامكِ الجديد بانتظاركِ</p>
+            </div>
+            <div class="showcase-list">
+              <div class="showcase-row">
+                <span class="row-price">إطلالة كاملة</span>
+                <div class="row-right"><div class="row-name">عباية + حقيبة ذهبية</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">الأكثر إعجابًا</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">إطلالة كاملة</span>
+                <div class="row-right"><div class="row-name">فستان سهرة + إكسسوار لؤلؤي</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">جديد</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">إطلالة كاملة</span>
+                <div class="row-right"><div class="row-name">طقم أم وابنتها المتناسق</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span><span class="row-tag">مقترح لكِ</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 4 — التوثيق الشامل -->
+          <div class="showcase-panel">
+            <div class="showcase-topbar">
+              <span class="tab-chip">التوثيق الشامل</span>
+              <div class="app-logo-mini"><img src="images/logo-icon.png" alt="">لُقطة الأميرات</div>
+            </div>
+            <div class="showcase-banner">
+              <span class="banner-tag">حماية كاملة</span>
+              <p>100% من الحسابات والقطع في هذه الصفحة مُوثقة</p>
+            </div>
+            <div class="showcase-list">
+              <div class="showcase-row">
+                <span class="row-price">مكتمل ✓</span>
+                <div class="row-right"><div class="row-name">توثيق الهوية</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">مكتمل ✓</span>
+                <div class="row-right"><div class="row-name">توثيق القطعة الفاخرة</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span></div></div>
+              </div>
+              <div class="showcase-row">
+                <span class="row-price">مكتمل ✓</span>
+                <div class="row-right"><div class="row-name">توثيق عنوان الاستلام</div><div class="row-meta"><span class="row-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>موثوق</span></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="stage-arrow" id="stageNext" aria-label="التالي">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. FINAL DOWNLOAD CTA
+============================================================ -->
+<section class="final-cta" id="download">
+  <div class="container">
+    <img class="hero-crown reveal" src="images/logo-icon.png" alt="شعار لُقطة الأميرات">
+    <h2 class="section-title reveal">حمّلي <span>لُقطة الأميرات</span> الآن</h2>
+    <p class="section-desc reveal reveal-delay-1">انضمي إلى آلاف السيدات اللواتي يعشن تجربة تسوّق فاخرة وسهلة، لكِ ولأميرتكِ الصغيرة.</p>
+    <div class="store-buttons reveal reveal-delay-2">
+      <a href="#" class="store-btn cms-gplay-link" aria-label="حمّلي التطبيق من جوجل بلاي">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3.6 2.3 13.8 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1Z" fill="#F0A46B"/><path d="M13.8 12 3.6 2.3c.2-.1.5-.1.8 0l11 6.3-1.6 3.4Z" fill="#EFD79E"/><path d="M13.8 12 16 15.4l-11 6.3c-.3.1-.6.1-.8 0l9.8-9.7Z" fill="#C9A24B"/><path d="M16 15.4 13.8 12l2.2-3.4 3.9 2.2c.9.5.9 1.9 0 2.4L16 15.4Z" fill="#A6791F"/></svg>
+        <span class="store-text"><strong>Google Play</strong></span>
+      </a>
+      <a href="#" class="store-btn cms-appstore-link" aria-label="حمّلي التطبيق من آب ستور">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M17.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.6-2.8-1.9-3.4-1.9-1.5-.1-2.9.9-3.6.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.2 0 2-1.1 2.8-2.2.7-1 1.4-2.5 1.6-3.6a4.7 4.7 0 0 1-2.7-4Z" fill="#F0A46B"/><path d="M14.9 5.6c.6-.8 1-1.9.9-3-.9.1-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2.1-.5 2.7-1.3Z" fill="#EFD79E"/></svg>
+        <span class="store-text"><strong>App Store</strong></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <a href="https://www.luqtah.online" class="footer-link" target="_blank" rel="noopener">www.luqtah.online</a>
+    <p>© 2026 لُقطة الأميرات. جميع الحقوق محفوظة.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Topbar background on scroll ---------- */
+  var topbar = document.getElementById('topbar');
+  function onScroll(){
+    if(window.scrollY > 30){ topbar.classList.add('scrolled'); }
+    else{ topbar.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:'0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---------- 3D tilt on category cards ---------- */
+  if(!reduceMotion && window.matchMedia('(hover: hover)').matches){
+    document.querySelectorAll('.cat-card').forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var cx = rect.width / 2;
+        var cy = rect.height / 2;
+        var rotY = ((x - cx) / cx) * 10;
+        var rotX = -((y - cy) / cy) * 10;
+        card.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) translateY(-6px)';
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+  }
+
+  /* ---------- Showcase: tabs + arrows + panels ---------- */
+  var showcaseTabs = document.querySelectorAll('#showcaseTabs .tab-pill');
+  var showcasePanels = document.querySelectorAll('#showcaseScreen .showcase-panel');
+  var slideCurrentEl = document.getElementById('slideCurrent');
+  var slideTitleEl = document.getElementById('slideTitle');
+  var slideDescEl = document.getElementById('slideDesc');
+  var showcaseData = [
+    { title:'الرئيسية الذهبية', desc:'تصفحي أحدث القطع اليومية المُوثقة مع تصنيف ذكي للغاية.' },
+    { title:'الاستبدال الذكي', desc:'اكتشفي أقرب تطابق لمقاسكِ وذوقكِ، واستبدلي قطعكِ بسلاسة.' },
+    { title:'إلهام الأميرات', desc:'إطلالات وأفكار تنسيق جديدة كل يوم بلمسة فاخرة.' },
+    { title:'التوثيق الشامل', desc:'طمأنينة كاملة؛ كل حساب وكل قطعة تمر بخطوات توثيق دقيقة قبل الظهور.' }
+  ];
+  var showcaseIndex = 0;
+
+  function goToShowcase(index){
+    var total = showcasePanels.length;
+    showcaseIndex = (index + total) % total;
+    showcaseTabs.forEach(function(tab, i){ tab.classList.toggle('active', i === showcaseIndex); });
+    showcasePanels.forEach(function(panel, i){ panel.classList.toggle('active', i === showcaseIndex); });
+    if(slideCurrentEl) slideCurrentEl.textContent = showcaseIndex + 1;
+    if(slideTitleEl) slideTitleEl.textContent = showcaseData[showcaseIndex].title;
+    if(slideDescEl) slideDescEl.textContent = showcaseData[showcaseIndex].desc;
+  }
+
+  showcaseTabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ goToShowcase(i); });
+  });
+  var stagePrev = document.getElementById('stagePrev');
+  var stageNext = document.getElementById('stageNext');
+  if(stagePrev) stagePrev.addEventListener('click', function(){ goToShowcase(showcaseIndex - 1); });
+  if(stageNext) stageNext.addEventListener('click', function(){ goToShowcase(showcaseIndex + 1); });
+
+  /* ---------- Smooth anchor scrolling offset for fixed header ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var id = link.getAttribute('href');
+      if(id.charAt(0) === '#' && id.length > 1){
+        var target = document.querySelector(id);
+        if(target){
+          e.preventDefault();
+          var top = target.getBoundingClientRect().top + window.pageYOffset - 70;
+          window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+      }
+    });
+  });
+
+  /* ---------- Pricing accordion (expand/collapse) ---------- */
+  var accordionItems = document.querySelectorAll('#pricingAccordion .accordion-item');
+  accordionItems.forEach(function(item){
+    var header = item.querySelector('.accordion-header');
+    header.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      accordionItems.forEach(function(other){
+        other.classList.remove('open');
+        other.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ---------- Rewards progress bar fill on scroll into view ---------- */
+  var progressFill = document.querySelector('.progress-fill');
+  if(progressFill){
+    var fillTo = function(){
+      progressFill.style.width = progressFill.getAttribute('data-progress') + '%';
+    };
+    if('IntersectionObserver' in window){
+      var progIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ fillTo(); progIO.unobserve(entry.target); }
+        });
+      }, { threshold:0.4 });
+      progIO.observe(progressFill);
+    } else {
+      fillTo();
+    }
+  }
+})();
+</script>
+
+<!-- ============================================================
+     CMS: pulls a handful of fields (store links + section texts)
+     from Firestore content/landing-page at load time — set/edited from
+     luqtah-admin-panel's "تعديل الصفحة الإلكترونية" section. Every field
+     falls back to the static text already written above on any failure
+     (offline, permission, missing doc/field), so the page never breaks
+     or goes blank waiting on this — same visual design either way, only
+     the content source changes.
+============================================================ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+(async function loadLandingPageContent(){
+  try {
+    var firebaseConfig = {
+      projectId: "luqtt-alamirat-be643",
+      appId: "1:511827118684:web:d933079cff90a127d87499",
+      apiKey: "AIzaSyD14i-DqWSD8weFICNau3eMzc_zFXDspng",
+      authDomain: "luqtt-alamirat-be643.firebaseapp.com",
+      storageBucket: "luqtt-alamirat-be643.firebasestorage.app",
+      messagingSenderId: "511827118684"
+    };
+    var app = initializeApp(firebaseConfig);
+    var db = getFirestore(app);
+    var snap = await getDoc(doc(db, "content", "landing-page"));
+    if(!snap.exists()) return;
+    var data = snap.data();
+
+    if(data.googlePlayUrl){
+      document.querySelectorAll(".cms-gplay-link").forEach(function(el){ el.href = data.googlePlayUrl; });
+    }
+    if(data.appStoreUrl){
+      document.querySelectorAll(".cms-appstore-link").forEach(function(el){ el.href = data.appStoreUrl; });
+    }
+    var textFields = {
+      heroText: "cmsHeroText",
+      whyUsText: "cmsWhyUsText",
+      categoriesText: "cmsCategoriesText",
+      pricingText: "cmsPricingText",
+      rewardsText: "cmsRewardsText"
+    };
+    Object.keys(textFields).forEach(function(key){
+      if(data[key]){
+        var el = document.getElementById(textFields[key]);
+        if(el) el.textContent = data[key];
+      }
+    });
+  } catch(err){
+    console.error("[landing-page CMS] Could not load dynamic content, keeping static defaults:", err);
+  }
+})();
+</script>
+</body>
+</html>
