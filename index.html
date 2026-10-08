@@ -898,6 +898,12 @@ footer .footer-link:hover{ color:#FF7913; }
   .why-us, .categories, .feature-section, .showcase, .final-cta{ padding:70px 0; }
   .section-head{ margin-bottom:38px; }
 }
+
+/* "إظهار المدفوعات" (luqtah-admin-panel -> settings/payments). Hidden by
+   default: prices of paid packages only appear once the page confirms
+   payments are on; until then (or if the check fails) they read "قريباً". */
+body:not(.payments-on) .pay-only{display:none !important}
+body.payments-on .pay-soon{display:none !important}
 </style>
 </head>
 <body>
@@ -1145,13 +1151,14 @@ footer .footer-link:hover{ color:#FF7913; }
             <span class="price-title">باقة الإعلانات الذهبية <span class="badge-pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 18l1-9 5 4 4-8 4 8 5-4 1 9H4z"/></svg>الأكثر طلبًا</span></span>
             <span class="price-sub">لزيادة فرص البيع والوصول إلى المشترين بسرعة</span>
           </span>
-          <span class="price-summary">30 ر.س<br><small>شهريًا</small></span>
+          <span class="price-summary pay-only">30 ر.س<br><small>شهريًا</small></span>
+          <span class="price-summary pay-soon">قريباً</span>
           <span class="accordion-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
         <div class="accordion-panel">
           <div class="accordion-panel-inner">
             <div class="accordion-panel-content">
-              <div class="price-toggle">
+              <div class="price-toggle pay-only">
                 <div class="toggle-box active"><small>شهريًا</small><strong>30 ر.س</strong></div>
                 <div class="toggle-box"><small>سنويًا</small><strong>180 ر.س</strong></div>
               </div>
@@ -1175,7 +1182,8 @@ footer .footer-link:hover{ color:#FF7913; }
             <span class="price-title">باقة تسويق الإشعارات</span>
             <span class="price-sub">لزيادة فرص البيع السريع من خلال الحملات التسويقية</span>
           </span>
-          <span class="price-summary">50 ر.س<br><small>مرة واحدة</small></span>
+          <span class="price-summary pay-only">50 ر.س<br><small>مرة واحدة</small></span>
+          <span class="price-summary pay-soon">قريباً</span>
           <span class="accordion-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
         <div class="accordion-panel">
@@ -1590,6 +1598,12 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12
     };
     var app = initializeApp(firebaseConfig);
     var db = getFirestore(app);
+    try {
+      var paySnap = await getDoc(doc(db, "settings", "payments"));
+      if(paySnap.exists() && paySnap.data().enabled === true) document.body.classList.add("payments-on");
+    } catch(payErr){
+      console.error("[landing-page] payments flag unavailable, keeping prices hidden:", payErr);
+    }
     var snap = await getDoc(doc(db, "content", "landing-page"));
     if(!snap.exists()) return;
     var data = snap.data();
