@@ -962,7 +962,7 @@ body.payments-on .pay-soon{display:none !important}
           <span class="store-text"><strong>App Store</strong></span>
         </a>
       </div>
-      <div class="hero-trust">
+      <div class="hero-trust" id="cmsHeroTrust">
         <div><strong>+50K</strong><span>مستخدمة راضية</span></div>
         <div><strong>4.9★</strong><span>تقييم المستخدمات</span></div>
         <div><strong>8</strong><span>تصنيفات فاخرة</span></div>
@@ -1681,6 +1681,23 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12
         if(el) el.textContent = data[key];
       }
     });
+    // Figures under the store buttons: [{value, label}]. Items with both
+    // fields empty are skipped; if none remain the whole row is hidden.
+    // A doc without the field keeps the static figures above.
+    var trust = document.getElementById("cmsHeroTrust");
+    if(trust && Array.isArray(data.stats)){
+      var items = data.stats.filter(function(s){ return s && (String(s.value || "").trim() || String(s.label || "").trim()); });
+      if(!items.length){ trust.style.display = "none"; }
+      else {
+        trust.textContent = "";
+        items.forEach(function(s){
+          var box = document.createElement("div");
+          if(String(s.value || "").trim()){ var st = document.createElement("strong"); st.textContent = s.value; box.appendChild(st); }
+          if(String(s.label || "").trim()){ var sp = document.createElement("span"); sp.textContent = s.label; box.appendChild(sp); }
+          trust.appendChild(box);
+        });
+      }
+    }
   } catch(err){
     console.error("[landing-page CMS] Could not load dynamic content, keeping static defaults:", err);
   }
