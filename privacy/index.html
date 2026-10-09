@@ -22,6 +22,12 @@
   ul{padding-inline-start:22px;margin:6px 0}
   .muted{color:var(--muted);font-size:14px}
   a{color:var(--brand)}
+  ul.sub{padding-inline-start:44px;list-style:circle}
+  .table-wrap{overflow-x:auto;margin:8px 0}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:right;vertical-align:top}
+  th{background:#fff1e4}
+  .note{background:#fff1e4;border-radius:14px;padding:10px 14px}
   footer{text-align:center;color:var(--muted);font-size:13px;padding:0 20px 32px}
 </style>
 </head>
@@ -30,7 +36,7 @@
   <img src="/images/logo-icon.png" alt="">
   <a href="/">لُقطة الأميرات</a>
 </header>
-<main>
+<main data-content-id="privacy" data-subtitle-prefix="تطبيق لُقطة الأميرات وموقع luqtah.online — " data-source="fallback">
   <h1>سياسة الخصوصية</h1>
   <p class="muted">تطبيق <b>لُقطة الأميرات</b> وموقع luqtah.online — آخر تحديث: [تاريخ النشر]</p>
 
@@ -118,5 +124,8 @@
 <footer>
   <a href="/terms">سياسة البيع والشراء</a> · <a href="/delete-account">حذف الحساب</a> · © لُقطة الأميرات
 </footer>
+<!-- Live text from the same Firestore document the app reads (editable in
+     the admin panel); the text above is the fallback if that fails. -->
+<script type="module" src="/assets/content-page.js"></script>
 </body>
 </html>
