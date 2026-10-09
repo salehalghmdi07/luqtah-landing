@@ -157,6 +157,10 @@ section{ position:relative; }
   color:var(--ink);
 }
 .brand .crown-mark{ height:30px; width:auto; }
+.topbar .container{ flex-wrap:wrap; column-gap:28px; row-gap:6px; }
+.top-links{ display:flex; align-items:center; gap:18px; }
+.top-links a{ font-size:13px; font-weight:600; color:var(--ink-soft); white-space:nowrap; transition:color .3s ease; }
+.top-links a:hover{ color:var(--gold-deep); }
 
 .btn{
   display:inline-flex;
@@ -281,6 +285,10 @@ section{ position:relative; }
   color:var(--gold-deep);
 }
 .hero-trust span{ font-size:13px; color:var(--ink-soft); }
+/* Center the store buttons and the stats row on every screen size
+   (they were only centered below 980px). */
+.hero .store-buttons,
+.hero .hero-trust{ justify-content:center; }
 
 /* ============================================================
    3. WHY US — feature cards
@@ -870,6 +878,9 @@ footer .container{ display:flex; flex-direction:column; align-items:center; just
 footer p{ font-size:13px; color:rgba(255,255,255,0.55); }
 footer .footer-link{ font-size:14px; font-weight:700; color:var(--gold-light); transition:color .3s ease; }
 footer .footer-link:hover{ color:#FF7913; }
+.footer-nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 20px; }
+.footer-nav a{ font-size:13px; color:rgba(255,255,255,0.75); transition:color .3s ease; }
+.footer-nav a:hover{ color:var(--gold-light); }
 
 /* ============================================================
    RESPONSIVE
@@ -895,6 +906,8 @@ footer .footer-link:hover{ color:#FF7913; }
   .cat-grid{ grid-template-columns:repeat(2,1fr); }
   .showcase-phone{ width:230px; height:474px; }
   .store-btn{ padding:10px 16px; }
+  .top-links{ flex-basis:100%; justify-content:center; gap:14px; }
+  .top-links a{ font-size:12px; }
   .why-us, .categories, .feature-section, .showcase, .final-cta{ padding:70px 0; }
   .section-head{ margin-bottom:38px; }
 }
@@ -917,6 +930,11 @@ body.payments-on .pay-soon{display:none !important}
       <img class="crown-mark" src="images/logo-icon.png" alt="شعار لُقطة الأميرات">
       لُقطة الأميرات
     </div>
+    <nav class="top-links" aria-label="روابط السياسات">
+      <a href="/terms">سياسة البيع والشراء</a>
+      <a href="/privacy">سياسة الخصوصية</a>
+      <a href="/delete-account">حذف الحساب</a>
+    </nav>
   </div>
 </header>
 
@@ -1466,6 +1484,11 @@ body.payments-on .pay-soon{display:none !important}
 <footer>
   <div class="container">
     <a href="https://www.luqtah.online" class="footer-link" target="_blank" rel="noopener">www.luqtah.online</a>
+    <nav class="footer-nav" aria-label="روابط السياسات">
+      <a href="/terms">سياسة البيع والشراء</a>
+      <a href="/privacy">سياسة الخصوصية</a>
+      <a href="/delete-account">حذف الحساب</a>
+    </nav>
     <p>© 2026 لُقطة الأميرات. جميع الحقوق محفوظة.</p>
   </div>
 </footer>
