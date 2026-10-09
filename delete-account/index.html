@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حذف الحساب — لُقطة الأميرات</title>
+<meta name="description" content="طريقة حذف حسابكِ في تطبيق لُقطة الأميرات وبياناتكِ المرتبطة به.">
+<link rel="icon" href="/images/logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--brand:#ff7913;--ink:#3b2a1e;--muted:#7a6656;--line:#f1e3d6;--bg:#fff8f2}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Cairo",system-ui,Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.9}
+  header{display:flex;align-items:center;gap:12px;max-width:760px;margin:0 auto;padding:24px 20px 0}
+  header img{width:44px;height:44px;border-radius:12px}
+  header a{color:var(--ink);text-decoration:none;font-weight:800;font-size:18px}
+  main{max-width:760px;margin:0 auto;padding:16px 20px 48px}
+  h1{font-size:28px;margin:12px 0 4px;color:var(--brand)}
+  h2{font-size:19px;margin:0 0 8px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:22px;margin-top:18px}
+  ol,ul{padding-inline-start:22px;margin:8px 0}
+  .muted{color:var(--muted);font-size:14px}
+  label{display:block;font-weight:600;margin-bottom:6px}
+  input[type=email]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:14px;font:inherit;direction:ltr;text-align:left}
+  input[type=email]:focus{outline:2px solid #ffd6b5}
+  button{margin-top:12px;background:var(--brand);color:#fff;border:0;border-radius:14px;padding:12px 20px;font:inherit;font-weight:800;cursor:pointer}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:0 20px 32px}
+  footer a{color:var(--brand)}
+</style>
+</head>
+<body>
+<header>
+  <img src="/images/logo-icon.png" alt="">
+  <a href="/">لُقطة الأميرات</a>
+</header>
+<main>
+  <h1>حذف الحساب</h1>
+  <p class="muted">هذه الصفحة تشرح طريقة حذف حسابكِ في تطبيق <b>لُقطة الأميرات</b> والبيانات المرتبطة به.</p>
+
+  <section class="card">
+    <h2>الحذف من داخل التطبيق</h2>
+    <ol>
+      <li>افتحي تطبيق لُقطة الأميرات وسجّلي الدخول.</li>
+      <li>انتقلي إلى <b>حسابي</b>.</li>
+      <li>اضغطي <b>حذف حسابي</b> (فوق زر تسجيل الخروج) ثم أكّدي الطلب.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>ماذا يحدث عند الحذف؟</h2>
+    <ul>
+      <li>يُحذف الحساب خلال <b>24 ساعة</b> من تأكيد الطلب.</li>
+      <li>تُحذف بياناتكِ الشخصية: الملف الشخصي (الاسم، الجوال، البريد، المدينة، الصورة)، والإشعارات، والمفضلة، وطلبات الإلهام.</li>
+      <li>تُلغى طلبات الشراء المفتوحة، وتتوقف إعلاناتكِ المعروضة فلا تظهر لأحد.</li>
+      <li>تبقى نسخة الطرف الآخر من <b>الفواتير المكتملة</b> لحفظ حقوقه، ويبقى سجل مختصر بالحذف (الاسم، البريد، تاريخ الطلب وتاريخ الحذف) لأغراض التوثيق.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>حذفتِ التطبيق؟ اطلبي الحذف من هنا</h2>
+    <p>أدخلي البريد الإلكتروني المسجّل في حسابكِ، وسنرسل إليه رابطاً لتأكيد الطلب. لا يُحذف أي حساب قبل الضغط على رابط التأكيد من البريد نفسه، حمايةً لحسابكِ.</p>
+    <form method="POST" action="https://api.luqtah.online/api/account/deletion-request-web">
+      <label for="email">البريد الإلكتروني</label>
+      <input id="email" name="email" type="email" required autocomplete="email" placeholder="name@example.com">
+      <button type="submit">إرسال رابط التأكيد</button>
+    </form>
+    <p class="muted">الرابط صالح لمدة ساعة واحدة. إن لم يصلكِ، تحققي من مجلد الرسائل غير المرغوب فيها.</p>
+  </section>
+</main>
+<footer>
+  <a href="/privacy">سياسة الخصوصية</a> · © لُقطة الأميرات
+</footer>
+</body>
+</html>
