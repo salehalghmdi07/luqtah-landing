@@ -917,6 +917,10 @@ footer .footer-link:hover{ color:#FF7913; }
    default: prices of paid packages only appear once the page confirms
    payments are on; until then (or if the check fails) they read "قريباً". */
 body:not(.payments-on) .pay-only{display:none !important}
+/* "إظهار زر App Store" (luqtah-admin-panel -> تعديل الصفحة الإلكترونية).
+   Hidden by default and whenever the setting can't be read; shown only once
+   content/landing-page.showAppStoreButton is confirmed true. */
+body:not(.appstore-on) .cms-appstore-link{display:none !important}
 body.payments-on .pay-soon{display:none !important}
 </style>
 </head>
@@ -1661,6 +1665,7 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12
     var snap = await getDoc(doc(db, "content", "landing-page"));
     if(!snap.exists()) return;
     var data = snap.data();
+    if(data.showAppStoreButton === true) document.body.classList.add("appstore-on");
 
     if(data.googlePlayUrl){
       document.querySelectorAll(".cms-gplay-link").forEach(function(el){ el.href = data.googlePlayUrl; });
