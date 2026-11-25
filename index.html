@@ -918,13 +918,14 @@ footer .footer-link:hover{ color:#FF7913; }
    payments are on; until then (or if the check fails) they read "قريباً". */
 body:not(.payments-on) .pay-only{display:none !important}
 /* "إظهار زر App Store" (luqtah-admin-panel -> تعديل الصفحة الإلكترونية).
-   Hidden by default and whenever the setting can't be read; shown only once
-   content/landing-page.showAppStoreButton is confirmed true. */
+   The app is on the App Store, so the button shows with the page (body has
+   appstore-on from the start); it is hidden only when the setting is
+   explicitly false. */
 body:not(.appstore-on) .cms-appstore-link{display:none !important}
 body.payments-on .pay-soon{display:none !important}
 </style>
 </head>
-<body>
+<body class="appstore-on">
 
 <!-- ============================================================
      TOP BAR
@@ -957,11 +958,11 @@ body.payments-on .pay-soon{display:none !important}
         في تجربة تسوّق أنيقة، مريحة، وموثوقة من أول لُقطة.
       </p>
       <div class="store-buttons">
-        <a href="#" class="store-btn cms-gplay-link" aria-label="حمّلي التطبيق من جوجل بلاي">
+        <a href="https://play.google.com/store/apps/details?id=online.luqtah.app" class="store-btn cms-gplay-link" aria-label="حمّلي التطبيق من جوجل بلاي">
           <svg viewBox="0 0 24 24" fill="none"><path d="M3.6 2.3 13.8 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1Z" fill="#F0A46B"/><path d="M13.8 12 3.6 2.3c.2-.1.5-.1.8 0l11 6.3-1.6 3.4Z" fill="#EFD79E"/><path d="M13.8 12 16 15.4l-11 6.3c-.3.1-.6.1-.8 0l9.8-9.7Z" fill="#C9A24B"/><path d="M16 15.4 13.8 12l2.2-3.4 3.9 2.2c.9.5.9 1.9 0 2.4L16 15.4Z" fill="#A6791F"/></svg>
           <span class="store-text"><strong>Google Play</strong></span>
         </a>
-        <a href="#" class="store-btn cms-appstore-link" aria-label="حمّلي التطبيق من آب ستور">
+        <a href="https://apps.apple.com/sa/app/id6835319454" class="store-btn cms-appstore-link" aria-label="حمّلي التطبيق من آب ستور">
           <svg viewBox="0 0 24 24" fill="none"><path d="M17.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.6-2.8-1.9-3.4-1.9-1.5-.1-2.9.9-3.6.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.2 0 2-1.1 2.8-2.2.7-1 1.4-2.5 1.6-3.6a4.7 4.7 0 0 1-2.7-4Z" fill="#F0A46B"/><path d="M14.9 5.6c.6-.8 1-1.9.9-3-.9.1-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2.1-.5 2.7-1.3Z" fill="#EFD79E"/></svg>
           <span class="store-text"><strong>App Store</strong></span>
         </a>
@@ -1474,11 +1475,11 @@ body.payments-on .pay-soon{display:none !important}
     <h2 class="section-title reveal">حمّلي <span>لُقطة الأميرات</span> الآن</h2>
     <p class="section-desc reveal reveal-delay-1">انضمي إلى آلاف السيدات اللواتي يعشن تجربة تسوّق فاخرة وسهلة، لكِ ولأميرتكِ الصغيرة.</p>
     <div class="store-buttons reveal reveal-delay-2">
-      <a href="#" class="store-btn cms-gplay-link" aria-label="حمّلي التطبيق من جوجل بلاي">
+      <a href="https://play.google.com/store/apps/details?id=online.luqtah.app" class="store-btn cms-gplay-link" aria-label="حمّلي التطبيق من جوجل بلاي">
         <svg viewBox="0 0 24 24" fill="none"><path d="M3.6 2.3 13.8 12 3.6 21.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1Z" fill="#F0A46B"/><path d="M13.8 12 3.6 2.3c.2-.1.5-.1.8 0l11 6.3-1.6 3.4Z" fill="#EFD79E"/><path d="M13.8 12 16 15.4l-11 6.3c-.3.1-.6.1-.8 0l9.8-9.7Z" fill="#C9A24B"/><path d="M16 15.4 13.8 12l2.2-3.4 3.9 2.2c.9.5.9 1.9 0 2.4L16 15.4Z" fill="#A6791F"/></svg>
         <span class="store-text"><strong>Google Play</strong></span>
       </a>
-      <a href="#" class="store-btn cms-appstore-link" aria-label="حمّلي التطبيق من آب ستور">
+      <a href="https://apps.apple.com/sa/app/id6835319454" class="store-btn cms-appstore-link" aria-label="حمّلي التطبيق من آب ستور">
         <svg viewBox="0 0 24 24" fill="none"><path d="M17.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.6-2.8-1.9-3.4-1.9-1.5-.1-2.9.9-3.6.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.2 0 2-1.1 2.8-2.2.7-1 1.4-2.5 1.6-3.6a4.7 4.7 0 0 1-2.7-4Z" fill="#F0A46B"/><path d="M14.9 5.6c.6-.8 1-1.9.9-3-.9.1-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2.1-.5 2.7-1.3Z" fill="#EFD79E"/></svg>
         <span class="store-text"><strong>App Store</strong></span>
       </a>
@@ -1665,7 +1666,7 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12
     var snap = await getDoc(doc(db, "content", "landing-page"));
     if(!snap.exists()) return;
     var data = snap.data();
-    if(data.showAppStoreButton === true) document.body.classList.add("appstore-on");
+    if(data.showAppStoreButton === false) document.body.classList.remove("appstore-on");
 
     if(data.googlePlayUrl){
       document.querySelectorAll(".cms-gplay-link").forEach(function(el){ el.href = data.googlePlayUrl; });
